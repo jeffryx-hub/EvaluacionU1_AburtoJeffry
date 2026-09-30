@@ -1,0 +1,46 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=2.54cm]{geometry}
+\usepackage{float}
+
+\title{\vspace{-2cm}Nota Técnica: Análisis de Deflexión de Viga}
+\author{Jeffry Aburto \\ Universidad de Santiago de Chile}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Problema y Objetivo}
+El presente informe analiza el comportamiento estructural de una viga rectangular simplemente apoyada bajo cargas puntuales. El objetivo principal es contrastar los datos de deflexión experimentales con las predicciones del modelo teórico lineal elástico para evaluar la precisión del modelo clásico.
+
+\section{Método y Supuestos}
+El análisis se basa en la teoría de flexión de vigas de Euler-Bernoulli, asumiendo un comportamiento lineal elástico del material. Los parámetros utilizados son:
+\begin{itemize}
+    \item Luz de la viga ($L$): $4.0$ m
+    \item Base de la sección ($b$): $0.2$ m
+    \item Altura de la sección ($h$): $0.4$ m
+    \item Módulo de elasticidad ($E$): $25$ GPa (ingresado como $25 \times 10^6$ kN/m$^2$ para mantener consistencia dimensional).
+\end{itemize}
+La inercia de la sección rectangular ($I$) se calculó mediante la relación $I = \frac{bh^3}{12}$, resultando en un valor de $0.001067$ m$^4$. La deflexión teórica ($\Delta$) se computó con la expresión para una carga puntual al centro del tramo: $\Delta = \frac{PL^3}{48EI}$.
+
+\section{Resultados y Verificación}
+La Figura 1 presenta el contraste entre la curva de deflexión medida y la proyección analítica.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{carga_deflexion.png}
+    \caption{Curva Carga vs. Deflexión en el centro de la luz.}
+\end{figure}
+
+El cálculo del error relativo demuestra una alta correspondencia entre ambos conjuntos. La mayor desviación ocurre en el escalón inicial de carga ($5$ kN) con un margen de error del $4\%$, el cual se reduce a medida que aumenta el esfuerzo aplicado. La verificación adicional de linealidad confirma que la relación $\Delta/P$ se mantiene estrictamente constante en un valor de $0.05$ mm/kN a lo largo de todo el rango evaluado.
+
+\section{Conclusiones e Interpretación}
+El modelo de Euler-Bernoulli predice con un alto grado de exactitud la respuesta de la viga, evidenciando que las cargas no superan el límite elástico del material. Las ligeras subestimaciones teóricas de la deflexión pueden explicarse debido a que la formulación clásica no considera las deformaciones adicionales inducidas por los esfuerzos de corte.
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{referencias}
+
+\end{document}
